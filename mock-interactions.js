@@ -1,3 +1,4 @@
+import { Base } from '@polymer/polymer/polymer-legacy.js';
 /**
  * @license
  * Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
@@ -9,7 +10,16 @@
  */
 
 // We declare it as a namespace to be compatible with JSCompiler.
-/** @const */ var MockInteractions = {};
+/** @const */ /**
+@license
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+*/
+var MockInteractions = {};
 
 (function(scope, global) {
   'use strict';
@@ -292,7 +302,7 @@
     }
 
     down(target);
-    Polymer.Base.async(function() {
+    Base.async(function() {
       up(target);
       click(target);
       callback && callback();
@@ -331,7 +341,7 @@
    * @param {!Element} target The node to fire the event on.
    */
   function focus(target) {
-    Polymer.Base.fire('focus', {}, {
+    Base.fire('focus', {}, {
       bubbles: false,
       node: target
     });
@@ -343,7 +353,7 @@
    * @param {!Element} target The node to fire the event on.
    */
   function blur(target) {
-    Polymer.Base.fire('blur', {}, {
+    Base.fire('blur', {}, {
       bubbles: false,
       node: target
     });
@@ -436,7 +446,7 @@
    */
   function pressAndReleaseKeyOn(target, keyCode, modifiers, key) {
     keyDownOn(target, keyCode, modifiers, key);
-    Polymer.Base.async(function() {
+    Base.async(function() {
       keyUpOn(target, keyCode, modifiers, key);
     }, 1);
   }
@@ -481,4 +491,4 @@
   scope.keyEventOn = keyEventOn;
   scope.middleOfNode = middleOfNode;
   scope.topLeftOfNode = topLeftOfNode;
-})(MockInteractions, this);
+})(MockInteractions, window);
