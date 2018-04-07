@@ -102,6 +102,21 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       });
 
+      suite('simulating a track event', function() {
+        test('dispatches events with correct steps', function() {
+          var spy = sinon.spy();
+          button.handleTrack = spy;
+          button.listen(button, 'track', 'handleTrack');
+          MockInteractions.track(button, 50, 50, 5);
+
+          var steps = [10, 20, 30, 40, 50, 50];
+          for (var i = 0, l = steps.length; i < l; i++) {
+            expect(spy.getCall(i).args[0].detail.dx).to.be.eql(steps[i]);
+            expect(spy.getCall(i).args[0].detail.dy).to.be.eql(steps[i]);
+          }
+        });
+      });
+
       suite('simulating tap in ShadowRoot', function() {
 
         test('only dispatches one tap event', function() {
