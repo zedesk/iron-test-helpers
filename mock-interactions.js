@@ -289,14 +289,15 @@
     if (options && options.emulateTouch) {
       touchstart(target);
       touchend(target);
-    }
-
-    down(target);
-    Polymer.Base.async(function() {
-      up(target);
-      click(target);
       callback && callback();
-    });
+    } else {
+      down(target);
+      Polymer.Base.async(function() {
+        up(target);
+        click(target);
+        callback && callback();
+      });
+    }
   }
 
   /**
@@ -318,11 +319,11 @@
     if (options && options.emulateTouch) {
       touchstart(node, xy);
       touchend(node, xy);
+    } else {
+      down(node, xy);
+      up(node, xy);
+      click(node, xy);
     }
-
-    down(node, xy);
-    up(node, xy);
-    click(node, xy);
   }
 
   /**
